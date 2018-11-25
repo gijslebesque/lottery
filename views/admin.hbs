@@ -1,0 +1,13 @@
+
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+<table style="width:100%">
+    {{#each users}}
+  <tr>
+    <th>Name: {{this.name}}</th>
+    <th>Flight number: {{this.flightNumber}}</th> 
+    <th>Seat number: {{this.seat}}</th>
+  </tr>
+ {{/each}}
+</table>
