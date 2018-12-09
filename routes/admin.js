@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var User = require("../models/user.js");
+var Ticket = require("../models/ticket.js");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   //check if logged in, otherwise redirect to login.
   if(req.session.user){
-    User.find( (err, users)=>{
+    Ticket.find( (err, users)=>{
             res.render('admin', { title: "Admin", users: users });
         })
     }
@@ -16,8 +16,7 @@ router.get('/', function(req, res, next) {
   
 });
 
-// router.post("/" , (req, res) =>{
- 
-// })
+//winner route
+
 
 module.exports = router;

@@ -2,11 +2,15 @@
 <p>Welcome to {{title}}</p>
 
 
-<form method="POST" action="/createUser">
+<form method="POST" action="/createTicket">
     <input type="text" name="name" placeholder="Name">
     
     <input type="text" name="flightNumber" placeholder="Flight number">
     
     <input type="text" name="seat" placeholder="Seat number">
+    <label for="birthday">Birthday</label>
+    <input type="date" label="birthday" name="birthday" placeholder="Birthday">
+    <label for="flightDate">Flightdate</label>
+    <input type="date" name="flightDate" placeholder="Flightdate">
     <button type="submit">Submit</button>
 </form>
