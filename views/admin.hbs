@@ -1,16 +1,29 @@
-
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<p>Welcome to {{title}} page</p>
 
-<table style="width:100%">
-    {{#each users}}
-  <tr>
-    <th>Name: {{this.name}}</th>
-    <th>Flight number: {{this.flightNumber}}</th> 
-    <th>Seat number: {{this.seat}}</th>
-    <th>Lottery number {{this.lotteryNumber}}</th>
-  </tr>
- {{/each}}
-</table>
+<div class="container">
+  <p>All the participants of drawing {{drawNumber}}</p>
+   <table class="striped" > 
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Flight number</th>
+              <th>Seat number</th>
+              <th>Lottery number</th>
+          </tr>
+        </thead>
 
-<a href="/winner">Generate winner</a>
+        <tbody>
+          {{#each users}}
+            <tr>
+              <th>{{this.name}}</th>
+              <th>{{this.flightNumber}}</th> 
+              <th>{{this.seat}}</th>
+              <th>{{this.lotteryNumber}}</th>
+            </tr>
+           {{/each}}
+        </tbody>
+      </table>
+    
+      <a class="waves-effect waves-light btn" href="/winner">Generate winner</a>
+</div>

@@ -5,24 +5,21 @@ var Draw = require("../models/drawing.js");
 
 /* GET home page. */
 router.get('/', (req, res, next) =>{
-
-  // let newDraw= new Draw({drawNumber:1});
-  // newDraw.save();
-
-
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Ticket' });
 });
 
 router.post("/createTicket" , (req, res) =>{
-//  let newTicket = new Ticket(req.body);
-
+  const {name, flightNumber, seat, flightDate, birthDay} = req.body;
+  if(!name || flightNumber || seat || flightDate || birthDay){
+    res.render("ticket-generated", {title: "Something went wrong"})   
+    return false;
+  }
 
   Draw.findOne().then(draw =>{
 
         let string = "" + draw.drawNumber;
         let pad = "000";
-        let drawingNumber = pad.substring(0, pad.length - string.length)+ string
-
+        let drawingNumber = pad.substring(0, pad.length - string.length) + string;
 
         let now = new Date(req.body.flightDate);
         let year = now.getFullYear().toString().substr(-2);
@@ -32,20 +29,20 @@ router.post("/createTicket" , (req, res) =>{
         let amountOfDays = Math.floor(diff / oneDay);
 
         let newTicket = new Ticket({
-          name: req.body.name,
-          flightNumber: req.body.flightNumber,
-          seat: req.body.seat,
-          flightDate: req.body.flightDate,
-          birthDay: req.body.birthDay,
+          name: name,
+          flightNumber: flightNumber,
+          seat: seat,
+          flightDate: flightDate,
+          birthDay: birthDay,
           hasParticipated: false,
           hasWon: false,
-          lotteryNumber: drawingNumber + req.body.flightNumber + year + amountOfDays + req.body.seat  
+          lotteryNumber: drawingNumber + flightNumber + year + amountOfDays + seat  
         })
 
         newTicket.save( (err, result) => {
           if (err) throw err;
              console.log(result)
-            res.send("user stored")   
+            res.render("ticket-generated", {title: "Ticket generated"})   
         });
        
       

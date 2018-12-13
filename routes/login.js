@@ -8,21 +8,17 @@ router.get('/', function(req, res, next) {
 });
 
 router.post("/", (req, res) =>{
-    console.log("hooi", req.body)
+   
     Admin.findOne({ $and: [{name: req.body.name, password: req.body.password}] }, (err, result)=>{
         if (err) throw err;
         console.log("", result)
         if(!result){
             res.render("login", {title:"No match"});
         }else{
-            req.session.user = result; 
-      //      console.log(req.sessions.user)
+            req.session.user = result;
             res.redirect("/admin");
         }
-    });
+    })
 });
 
 module.exports = router;
-
-//Vito
-//Vito1

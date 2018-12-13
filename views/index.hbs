@@ -1,9 +1,10 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<p>Get your lottery ticket now!</p>
+
 
 
 <form method="POST" action="/createTicket">
-    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="name" placeholder="Name" class="validate">
     
     <input type="text" name="flightNumber" placeholder="Flight number">
     
@@ -12,5 +13,6 @@
     <input type="date" label="birthday" name="birthday" placeholder="Birthday">
     <label for="flightDate">Flightdate</label>
     <input type="date" name="flightDate" placeholder="Flightdate">
-    <button type="submit">Submit</button>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Get my ticket</button>
+        
 </form>

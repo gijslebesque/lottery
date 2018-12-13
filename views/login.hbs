@@ -1,9 +1,10 @@
 
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<p>Please login to view the admin page</p>
 
 <form method="POST" action="/login">
     <input type="text" name="name" placeholder="Name">
     <input type="password" name="password" placeholder="password">
-    <button type="submit">Login</button>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Login</button>
+   
 </form>

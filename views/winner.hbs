@@ -1,12 +1,18 @@
-
+<div class="container">
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-
-<table style="width:100%">
+<p>The winner of drawing {{drawNumber}} is {{winner.name}}</p>
+<table class="striped">
+          <thead>
+          <tr>
+              <th>Flight number</th>
+              <th>Seat number</th>
+              <th>Lottery number</th>
+          </tr>
+        </thead>
   <tr>
-    <th>Name: {{winner.name}}</th>
-    <th>Flight number: {{winner.flightNumber}}</th> 
-    <th>Seat number: {{winner.seat}}</th>
-    <th>Lottery number {{winner.lotteryNumber}}</th>
+    <th>{{winner.flightNumber}}</th> 
+    <th>{{winner.seat}}</th>
+    <th>{{winner.lotteryNumber}}</th>
   </tr>
 </table>
+</div>
