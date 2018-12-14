@@ -9,8 +9,8 @@ router.get('/', (req, res, next) =>{
 });
 
 router.post("/createTicket" , (req, res) =>{
-  const {name, flightNumber, seat, flightDate, birthDay} = req.body;
-  if(!name || flightNumber || seat || flightDate || birthDay){
+  const {name, flightNumber, seat, flightDate, birthday} = req.body;
+  if(!name || !flightNumber || !seat || !flightDate || !birthday){
     res.render("ticket-generated", {title: "Something went wrong"})   
     return false;
   }
@@ -33,19 +33,16 @@ router.post("/createTicket" , (req, res) =>{
           flightNumber: flightNumber,
           seat: seat,
           flightDate: flightDate,
-          birthDay: birthDay,
+          birthDay: birthday,
           hasParticipated: false,
           hasWon: false,
           lotteryNumber: drawingNumber + flightNumber + year + amountOfDays + seat  
         })
 
-        newTicket.save( (err, result) => {
-          if (err) throw err;
-             console.log(result)
-            res.render("ticket-generated", {title: "Ticket generated"})   
-        });
-       
-      
+        newTicket.save().then(result =>{
+         res.render("ticket-generated", {title: "Ticket generated", lotteryNumber: result.lotteryNumber, name: result.name})   
+   
+        }).catch(err => {throw err});
   }).catch(err => {throw err});
 
 
