@@ -1,20 +1,22 @@
 
-  body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    font-size:18px;
-  }
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  font-size:18px;
+}
 
-  main {
-    flex: 1 0 auto;
-  }
-      h1, p{
-        text-align: center;
-      }
+main {
+  flex: 1 0 auto;
+}
+h1, p{
+  text-align: center;
+}
+
 nav{
   padding: 0px 20px;
 }
+
 nav ul a{
   font-size:18px;
 }
@@ -28,8 +30,6 @@ form{
   display: block;
   margin: 40px auto;
 }
-
-
 
 .btn{
   width:140px;
