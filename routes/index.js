@@ -18,15 +18,26 @@ router.post("/createTicket" , (req, res) =>{
   Draw.findOne().then(draw =>{
 
         let string = "" + draw.drawNumber;
-        let pad = "000";
+        let pad = "0000";
         let drawingNumber = pad.substring(0, pad.length - string.length) + string;
 
-        let now = new Date(req.body.flightDate);
-        let year = now.getFullYear().toString().substr(-2);
-        let start = new Date(now.getFullYear(), 0, 0);
-        let diff = now - start;
+      
+        ///
+        
+        let flightDateTimer = new Date(req.body.flightDate);
+        let start = new Date(flightDateTimer.getFullYear(), 0, 0);
+        let diff = flightDateTimer - start;
         let oneDay = 1000 * 60 * 60 * 24;
         let amountOfDays = Math.floor(diff / oneDay);
+       
+        let BirthdayTimer = new Date(req.body.birthday);
+        let startBirth = new Date(BirthdayTimer.getFullYear(), 0, 0);
+        let difference = BirthdayTimer - startBirth;
+        let amountOfDaysBirth = Math.floor(difference / oneDay);
+
+        let birthdayYear = BirthdayTimer.getFullYear().toString().substr(-2);
+        let year = flightDateTimer.getFullYear().toString().substr(-2);
+       
 
         let newTicket = new Ticket({
           name: name,
@@ -36,7 +47,7 @@ router.post("/createTicket" , (req, res) =>{
           birthDay: birthday,
           hasParticipated: false,
           hasWon: false,
-          lotteryNumber: drawingNumber + flightNumber + year + amountOfDays + seat  
+          lotteryNumber: `${drawingNumber}.${flightNumber}.${year}${amountOfDays}.${seat}.${birthdayYear}${amountOfDaysBirth}.` 
         })
 
         newTicket.save().then(result =>{

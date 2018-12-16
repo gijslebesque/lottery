@@ -24,7 +24,6 @@ nav ul a{
 }
 
 form{
-  /* flex-grow:1; */
   width:30%;
   display: block;
   margin: 40px auto;
@@ -33,6 +32,7 @@ form{
 
 
 .btn{
+  width:140px;
   margin:40px auto;
   display: block;
 }

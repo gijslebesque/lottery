@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
   //check if logged in, otherwise redirect to login.
     if(req.session.user){
         Tickets.find({hasParticipated:false}, (err, tickets)=>{
+            if (err) throw err;
             if(tickets.length > 0){
                 let randomTicket = tickets[Math.floor(Math.random() * tickets.length)]; 
                 req.session.winner = randomTicket
@@ -17,11 +18,12 @@ router.get('/', function(req, res, next) {
                     })
                     .then(() =>{
                         Drawing.findOne()
-                        .then(draw =>{    
-                            req.session.drawNumber = draw.drawNumber;     
-                            res.render('winner', { title: "Ticket generated", winner: req.session.winner, drawNumber:req.session.drawNumber });  
-                            Drawing.updateOne({_id: draw._id}, {drawNumber: draw.drawNumber + 1})                
-                        })
+                    .then(draw =>{    
+                        req.session.drawNumber = draw.drawNumber;
+                        Drawing.updateOne({_id: draw._id}, {drawNumber: draw.drawNumber + 1}).then(resee=>{
+                            res.render('winner', { title: "Ticket generated", winner: req.session.winner, drawNumber:req.session.drawNumber });
+                        })                
+                    })
                     })
                     .catch(err => {
                         throw err;

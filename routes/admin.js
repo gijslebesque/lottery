@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
             if(err) throw err;
 
             Drawing.findOne().then(draw =>{
+                console.log(draw)
                 res.render('admin', { title: "Admin", users: tickets, drawNumber:draw.drawNumber });
             }).catch(err => {throw err});
 
