@@ -22,6 +22,11 @@ router.post("/createTicket" , (req, res) =>{
         let drawingNumber = pad.substring(0, pad.length - string.length) + string;
 
       
+        let stringSeat = "" + seat;
+        let padSeat = "000";
+        let drawingNumberSeat = padSeat.substring(0, padSeat.length - stringSeat.length) + stringSeat;
+
+      
         ///
         
         let flightDateTimer = new Date(req.body.flightDate);
@@ -47,7 +52,7 @@ router.post("/createTicket" , (req, res) =>{
           birthDay: birthday,
           hasParticipated: false,
           hasWon: false,
-          lotteryNumber: `${drawingNumber}.${flightNumber}.${year}${amountOfDays}.${seat}.${birthdayYear}${amountOfDaysBirth}.` 
+          lotteryNumber: `${drawingNumber}.${flightNumber}.${year}${amountOfDays}.${drawingNumberSeat}.${birthdayYear}${amountOfDaysBirth}.` 
         })
 
         newTicket.save().then(result =>{
