@@ -2,9 +2,24 @@ var express = require('express');
 var router = express.Router();
 var Ticket = require("../models/ticket.js");
 var Draw = require("../models/drawing.js");
+var Admin = require("../models/admin.js");
 
 /* GET home page. */
 router.get('/', (req, res, next) =>{
+  const newDraw = new Draw({
+    drawNumber:1
+  })
+
+  newDraw.save();
+
+const newAdmin = new Admin({
+  name: "Vito",
+  password: "Vito1"
+})
+
+newAdmin.save()
+  
+
   res.render('index', { title: 'Ticket' });
 });
 
@@ -14,6 +29,7 @@ router.post("/createTicket" , (req, res) =>{
     res.render("ticket-generated", {title: "Something went wrong"})   
     return false;
   }
+
 
   Draw.findOne().then(draw =>{
 
