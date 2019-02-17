@@ -6,20 +6,6 @@ var Admin = require("../models/admin.js");
 
 /* GET home page. */
 router.get('/', (req, res, next) =>{
-  const newDraw = new Draw({
-    drawNumber:1
-  })
-
-  newDraw.save();
-
-const newAdmin = new Admin({
-  name: "Vito",
-  password: "Vito1"
-})
-
-newAdmin.save()
-  
-
   res.render('index', { title: 'Ticket' });
 });
 
